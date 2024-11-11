@@ -9,6 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  IMAGEBRANCH: "voice"
 
 jobs:
   build-and-push-image:
@@ -34,11 +35,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository }}-voice:nightly
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}-${{ env.IMAGEBRANCH }}:nightly
           labels: "nightly"
-      #- name: Generate artifact attestation
-      #  uses: actions/attest-build-provenance@v1
-      #  with:
-      #    subject-name: ${{ env.REGISTRY }}/sattelite/${{ env.IMAGE_NAME }}:nightly
-      #    subject-digest: ${{ steps.push.outputs.digest }}
-      #    push-to-registry: true
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository }}-${{ env.IMAGEBRANCH }}:nightly
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
