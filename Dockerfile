@@ -10,12 +10,12 @@ WORKDIR /app
 
 COPY sounds/ ./sounds/
 COPY script/setup ./script/
-COPY setup.py requirements.txt MANIFEST.in ./
+COPY setup.py requirements.txt requirements_respeaker.txt MANIFEST.in ./
 COPY wyoming_satellite/ ./wyoming_satellite/
 
 RUN script/setup
 
-RUN .venv/bin/pip3 install 'webrtc-noise-gain==1.2.3'
+RUN .venv/bin/pip3 install -r requirements_respeaker.txt
 
 COPY script/run ./script/
 COPY docker/run ./
