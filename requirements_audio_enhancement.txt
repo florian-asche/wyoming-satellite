@@ -1,1 +1,2 @@
 webrtc-noise-gain==1.2.3
+pysilero-vad==1.0.0
