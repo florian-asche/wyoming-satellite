@@ -1,5 +1,5 @@
 ---
-name: Build and publish the docker image
+name: Build and publish the voice sattelite docker image
 
 on:
   push:

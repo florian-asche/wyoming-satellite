@@ -1,5 +1,5 @@
 ---
-name: Build and publish the docker image
+name: Build and publish the mic_led docker image
 
 on:
   push:
