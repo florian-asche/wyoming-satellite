@@ -15,6 +15,8 @@ COPY wyoming_satellite/ ./wyoming_satellite/
 
 RUN script/setup
 
+RUN .venv/bin/pip3 install 'webrtc-noise-gain==1.2.3'
+
 COPY script/run ./script/
 COPY docker/run ./
 
