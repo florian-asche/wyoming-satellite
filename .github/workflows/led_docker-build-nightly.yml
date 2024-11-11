@@ -1,0 +1,45 @@
+---
+name: Build and publish the docker image
+
+on:
+  push:
+    branches:
+      - "master"
+      - "feat-add-ghr-support"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGEBRANCH: "led"
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to the Container registry
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        with:
+          context: "./examples/"
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}-${{ env.IMAGEBRANCH }}:nightly
+          labels: "nightly"
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository }}-${{ env.IMAGEBRANCH }}:nightly
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
