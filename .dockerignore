@@ -1,5 +1,6 @@
 *
 !requirements.txt
+!requirements_audio_enhancement.txt
 !MANIFEST.in
 !setup.py
 !script/setup
