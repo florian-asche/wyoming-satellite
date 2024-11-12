@@ -12,9 +12,9 @@ WORKDIR /app
 # copy content
 COPY sounds/ ./sounds/
 COPY script/setup ./script/
+COPY script/run ./script/
 COPY setup.py requirements.txt requirements_audio_enhancement.txt requirements_vad.txt MANIFEST.in ./
 COPY wyoming_satellite/ ./wyoming_satellite/
-COPY script/run ./script/
 COPY docker/run ./
 
 # run installation

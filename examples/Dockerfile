@@ -10,26 +10,19 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy app
-COPY commands/ ./commands/
-COPY websocket-service/ ./websocket-service/
-COPY 2mic_service.py ./2mic_service.py
-COPY 4mic_service.py ./4mic_service.py
-
-
-# Install needed python packages
-#RUN python3 -m venv --system-site-packages .venv
-#RUN .venv/bin/pip3 install --upgrade pip
-#RUN .venv/bin/pip3 install --upgrade wheel setuptools
-#RUN .venv/bin/pip3 install 'wyoming==1.5.2'
-#RUN .venv/bin/pip3 install 'pixel-ring'
+COPY commands/ ./examples/commands/
+COPY websocket-service/ ./examples/websocket-service/
+COPY 2mic_service.py ./examples/2mic_service.py
+COPY 4mic_service.py ./examples/4mic_service.py
+COPY ../script/run_2mic ./script/run_2mic
+COPY ../script/run_4mic ./script/run_4mic
 
 # Install needed python packages
 RUN python3 -m venv --system-site-packages .venv
 RUN .venv/bin/pip3 install --upgrade pip
 RUN .venv/bin/pip3 install --upgrade wheel setuptools
 RUN .venv/bin/pip3 install 'wyoming==1.5.4'
-
-WORKDIR /app
+#RUN .venv/bin/pip3 install 'pixel-ring'
 
 EXPOSE 10500
-ENTRYPOINT [".venv/bin/python3" "2mic_service.py" "--uri" 'tcp://0.0.0.0:10500']
+ENTRYPOINT ["/app/script/run_2mic" "--uri" 'tcp://0.0.0.0:10500']
