@@ -26,4 +26,4 @@ RUN .venv/bin/pip3 install 'wyoming==1.5.2'
 WORKDIR /app
 
 EXPOSE 10500
-ENTRYPOINT ["/app/examples/.venv/bin/python3 2mic_service.py" "--uri" 'tcp://127.0.0.1:10500']
+ENTRYPOINT ["/app/.venv/bin/python3 2mic_service.py" "--uri" 'tcp://0.0.0.0:10500']
