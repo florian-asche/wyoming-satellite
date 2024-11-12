@@ -18,8 +18,10 @@ COPY script/run ./script/
 COPY docker/run ./
 
 # run installation
-RUN script/setup
-RUN .venv/bin/pip3 install -f 'https://synesthesiam.github.io/prebuilt-apps/' -r requirements_audio_enhancement.txt -r requirements_vad.txt
+RUN python3 -m venv .venv
+RUN .venv/bin/pip3 install --upgrade pip
+RUN .venv/bin/pip3 install --upgrade wheel setuptools
+RUN .venv/bin/pip3 install --extra-index-url 'https://www.piwheels.org/simple' -f 'https://synesthesiam.github.io/prebuilt-apps/' -r requirements.txt -r requirements_audio_enhancement.txt -r requirements_vad.txt
 
 # set port
 EXPOSE 10700

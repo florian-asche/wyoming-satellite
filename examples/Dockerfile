@@ -23,7 +23,13 @@ COPY 4mic_service.py ./4mic_service.py
 #RUN .venv/bin/pip3 install 'wyoming==1.5.2'
 #RUN .venv/bin/pip3 install 'pixel-ring'
 
+# Install needed python packages
+RUN python3 -m venv --system-site-packages .venv
+RUN .venv/bin/pip3 install --upgrade pip
+RUN .venv/bin/pip3 install --upgrade wheel setuptools
+RUN .venv/bin/pip3 install 'wyoming==1.5.4'
+
 WORKDIR /app
 
 EXPOSE 10500
-ENTRYPOINT ["python3" "2mic_service.py" "--uri" 'tcp://0.0.0.0:10500']
+ENTRYPOINT [".venv/bin/python3" "2mic_service.py" "--uri" 'tcp://0.0.0.0:10500']
