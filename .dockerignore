@@ -11,3 +11,4 @@
 !wyoming_satellite/VERSION
 !docker/run
 !sounds/*.wav
+!examples/*
