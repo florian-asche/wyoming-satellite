@@ -23,9 +23,6 @@ COPY docker/run ./
 COPY examples/ ./examples/
 
 # run installation
-RUN python3 -m venv .venv
-RUN .venv/bin/pip3 install --upgrade pip
-RUN .venv/bin/pip3 install --upgrade wheel setuptools
 RUN ./script/setup
 #RUN .venv/bin/pip3 install 'pixel-ring'
 
