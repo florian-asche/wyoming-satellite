@@ -4,20 +4,35 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends avahi-utils
+    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential
 
+# set workdir
 WORKDIR /app
 
+# copy content for voice
 COPY sounds/ ./sounds/
 COPY script/setup ./script/
+COPY script/run ./script/
+COPY script/run_2mic ./script/
+COPY script/run_4mic ./script/
 COPY pyproject.toml ./
 COPY wyoming_satellite/ ./wyoming_satellite/
-
-RUN script/setup
-
-COPY script/run ./script/
 COPY docker/run ./
 
-EXPOSE 10700
+# copy content for led
+COPY examples/ ./examples/
 
+# run installation
+RUN python3 -m venv .venv
+RUN .venv/bin/pip3 install --upgrade pip
+RUN .venv/bin/pip3 install --upgrade wheel setuptools
+RUN script/setup
+#RUN .venv/bin/pip3 install 'pixel-ring'
+
+# set port for voice and led
+EXPOSE 10700 10500
+
+# set start script
+# add parameters in docker
 ENTRYPOINT ["/app/run"]
+#ENTRYPOINT ["/app/script/run_2mic" "--uri" "tcp://0.0.0.0:10500"] for led
