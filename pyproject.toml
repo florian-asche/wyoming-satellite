@@ -30,8 +30,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-silerovad = ["pysilero-vad==1.0.0"]
-webrtc = ["webrtc-noise-gain==1.2.3"]
+vad = ["pysilero-vad==1.0.0"]
+noisegain = ["webrtc-noise-gain==1.2.3"]
 respeaker = ["gpiozero", "spidev"]
 dev = [
     "black==22.12.0",
