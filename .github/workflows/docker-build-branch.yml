@@ -9,7 +9,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
 
 jobs:
   build-and-push-image:
@@ -24,9 +23,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Extract clean branch name
+        id: extract_branch
+        run: echo "CLEAN_BRANCH_NAME=$(echo ${{ github.head_ref || github.ref_name }} | sed 's|.*/||')" >> $GITHUB_ENV
+
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3.1.0
@@ -50,9 +50,9 @@ jobs:
           platforms: linux/amd64,linux/aarch64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.BRANCH_NAME }}
+            ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.CLEAN_BRANCH_NAME }}
           labels: |
-            branch=${{ env.BRANCH_NAME }}
+            branch=${{ env.CLEAN_BRANCH_NAME }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1.4.4
