@@ -24,9 +24,9 @@ COPY examples/ ./examples/
 
 # run installation
 RUN ./script/setup
-RUN ./script/setup vad
-RUN ./script/setup noisegain
-RUN ./script/setup respeaker
+RUN ./script/setup --vad
+RUN ./script/setup --noisegain
+RUN ./script/setup --respeaker
 #RUN .venv/bin/pip3 install 'pixel-ring'
 
 # set port for voice and led
