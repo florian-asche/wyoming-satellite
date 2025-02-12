@@ -27,7 +27,6 @@ jobs:
         id: extract_branch
         run: echo "CLEAN_BRANCH_NAME=$(echo ${{ github.head_ref || github.ref_name }} | sed 's|.*/||')" >> $GITHUB_ENV
 
-
       - name: Log in to the Container registry
         uses: docker/login-action@v3.1.0
         with:
