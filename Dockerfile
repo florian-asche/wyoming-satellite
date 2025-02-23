@@ -4,10 +4,13 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential
+    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential libasound2-plugins
 
 # set workdir
 WORKDIR /app
+
+RUN useradd -m -s /bin/bash -u 1000 debian
+USER debian
 
 # copy content for voice
 COPY sounds/ ./sounds/
