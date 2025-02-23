@@ -9,9 +9,6 @@ RUN apt-get update && \
 # set workdir
 WORKDIR /app
 
-RUN useradd -m -s /bin/bash -u 1000 debian
-USER debian
-
 # copy content for voice
 COPY sounds/ ./sounds/
 COPY script/setup ./script/
@@ -31,6 +28,9 @@ RUN ./script/setup --vad
 RUN ./script/setup --noisegain
 RUN ./script/setup --respeaker
 #RUN .venv/bin/pip3 install 'pixel-ring'
+
+#RUN useradd -m -s /bin/bash -u 1000 debian
+#USER debian
 
 # set port for voice and led
 EXPOSE 10700 10500
