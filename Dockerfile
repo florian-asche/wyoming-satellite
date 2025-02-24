@@ -4,7 +4,7 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential libasound2-plugins
+    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential libasound2-plugins pipewire-alsa
 
 # setup alsa-sound
 RUN echo 'pcm.!default { type plug slave.pcm "pipewire" }' | tee /etc/asound.conf
