@@ -1,39 +1,90 @@
+# Wyoming Satellite Audio Setup Guide
 
-Welcome text
+## Getting Started
+You have two options to set up the Wyoming Satellite:
 
-# prepared image
-you can use the ready to use image 
+### Option 1: Using the Ready-to-Use Image
+You can use the ready-to-use image which comes with all necessary configurations.
 
+### Option 2: Manual Installation
+Or you can install the Docker setup yourself by following the steps below:
 
-# manual installation
-or you can install the docker setup yourself
+## Manual Installation Steps
 
-##  update package db
+### 1. Update Package Database
+```bash
 sudo apt update
+```
 
-## install base packages
+### 2. Install Audio System Dependencies
+Install PipeWire and related packages:
+```bash
 sudo apt install -y pipewire wireplumber pipewire-audio-client-libraries
+```
 
-## For bluetooth
+### 3. Install Bluetooth Support (Optional)
+If you need Bluetooth audio functionality:
+```bash
 sudo apt install -y libspa-0.2-bluetooth pipewire-pulse
+```
 
-## PipeWire-ALSA-Brücke aktivieren
+### 4. Activate PipeWire-ALSA Bridge
+Link the PipeWire configuration to enable ALSA applications to use PipeWire:
+```bash
 sudo ln -sf /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
+```
 
-
-
-## Ermögliche User-Dienste ohne aktive Session
+### 5. Enable User Services Without Active Session
+Allow services to run without an active user session:
+```bash
 sudo loginctl enable-linger pi
+```
 
-
-
-
-
+### 6. Set Runtime Directory
+```bash
 export XDG_RUNTIME_DIR=/run/user/1000
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 select soundcard and set volumes
 
 sudo alsactl store
+
+## Audio Testing and Troubleshooting
+
+### Listing Available Audio Devices
+To view all available audio devices:
+```bash
+aplay -L
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
