@@ -1,41 +1,59 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-bookworm AS builder
 
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install build dependencies
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends avahi-utils alsa-utils pulseaudio-utils pipewire-bin build-essential libasound2-plugins pipewire-alsa
+    apt-get install --yes --no-install-recommends \
+        build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-# set workdir
+# Set workdir
 WORKDIR /app
 
-# copy content for voice
-COPY sounds/ ./sounds/
-COPY script/setup ./script/
-COPY script/run ./script/
-COPY script/run_2mic ./script/
-COPY script/run_4mic ./script/
+# Copy all application files
+COPY script/ ./script/
 COPY pyproject.toml ./
+COPY sounds/ ./sounds/
 COPY wyoming_satellite/ ./wyoming_satellite/
 COPY docker/run ./
-
-# copy content for led
 COPY examples/ ./examples/
 
-# run installation
-RUN ./script/setup
-RUN ./script/setup --vad
-RUN ./script/setup --noisegain
-RUN ./script/setup --respeaker
-#RUN .venv/bin/pip3 install 'pixel-ring'
+# Run installation steps
+RUN ./script/setup && \
+    ./script/setup --vad && \
+    ./script/setup --noisegain && \
+    ./script/setup --respeaker
 
-#RUN useradd -m -s /bin/bash -u 1000 debian
-#USER debian
+# Start second stage
+FROM python:3.11-slim-bookworm
 
-# set port for voice and led
+ENV LANG C.UTF-8
+
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends \
+        avahi-utils \
+        alsa-utils \
+        pulseaudio-utils \
+        pipewire-bin \
+        libasound2-plugins \
+        pipewire-alsa && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy complete app directory from builder
+COPY --from=builder /app /app
+
+# Create and switch to non-root user
+RUN useradd -m -s /bin/bash -u 1000 wyoming && \
+    usermod -a -G audio wyoming && \
+    chown -R wyoming:wyoming /app
+USER wyoming
+
+# Set ports for voice and led
 EXPOSE 10700 10500
 
-# set start script
-# add parameters in docker
+# Set start script
 ENTRYPOINT ["/app/run"]
-#ENTRYPOINT ["/app/script/run_2mic" "--uri" "tcp://0.0.0.0:10500"] for led

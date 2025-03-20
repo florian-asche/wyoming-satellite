@@ -58,4 +58,4 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ github.repository }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
-...
+
