@@ -2,7 +2,7 @@ name: Test Docker Container
 
 on:
   workflow_run:
-    workflows: ["Build and publish the voice satellite docker image"]
+    workflows: ["Build and push Docker image"]
     types:
       - completed
 
@@ -24,7 +24,7 @@ jobs:
       - name: Test Docker container startup
         run: |
           CONTAINER_ID=$(docker run -d --rm ghcr.io/${{ github.repository }}:${{ github.ref_name }})
-          sleep 5  # Warte kurz, damit der Container wirklich startet
+          sleep 5  # Wait briefly for the container to start properly
           
           if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_ID)" != "true" ]; then
             echo "Container failed to start!"

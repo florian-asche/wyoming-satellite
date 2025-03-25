@@ -38,8 +38,8 @@ RUN apt-get update && \
         pulseaudio-utils \
         pipewire-bin \
         libasound2-plugins \
-        pipewire-alsa && \
-    rm -rf /var/lib/apt/lists/*
+        pipewire-alsa \
+        ca-certificates
 
 WORKDIR /app
 
