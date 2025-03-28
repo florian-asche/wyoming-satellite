@@ -21,11 +21,11 @@ This repository also provides a Docker image for [Wyoming Satellite](https://git
 
 ### Use Docker
 
-See ...
+See [tutorial_docker.md](docs/tutorial_docker.md)
 
-### Bare metal installation
+### Use installer on selfinstalled hardware
 
-See ...
+See [tutorial_installer.md](docs/tutorial_installer.md) and [tutorial_2mic.md](docs/tutorial_2mic.md)
 
 ## Helpful information
 
