@@ -62,8 +62,6 @@ services:
       - /dev/gpiomem:/dev/gpiomem
       - /dev/spidev0.0:/dev/spidev0.0
       - /dev/spidev0.1:/dev/spidev0.1
-    #group_add:
-    #  - audio
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -77,7 +75,6 @@ services:
     container_name: openwakeword
     image: rhasspy/wyoming-openwakeword
     restart: unless-stopped
-    #user: 1001:1001
     network_mode: "host"
     volumes:
       - wakeword_data:/data
