@@ -1,4 +1,7 @@
 ---
+# This configuration is for direct hardware access. There is no pulse-audio or pipwire that can handle multiple sources or destinations for audio.
+#
+
 networks:
   default:                # default network for this project
 
@@ -21,7 +24,7 @@ services:
     command:
       - "--debug"
       - "--name"
-      - "satellite-dexter"
+      - "satellite-wohnzimmer"
       - "--vad"
       #- "--vad-buffer-seconds"
       #- "4"
@@ -31,16 +34,40 @@ services:
       - "2"
       #- "--wake-refractory-seconds"
       #- "3"
-      #- "--mic-command"
-      #- "arecord -D plughw:CARD=seeed2micvoicec,DEV=0 -r 16000 -c 1 -f S16_LE -t raw"
-      #- "--snd-command"
-      #- "aplay -D plughw:CARD=seeed2micvoicec,DEV=0 -r 22050 -c 1 -f S16_LE -t raw"
+      - "--mic-command"
+      - "arecord -D plughw:CARD=seeed2micvoicec,DEV=0 -r 16000 -c 1 -f S16_LE -t raw"
+      - "--snd-command"
+      - "aplay -D plughw:CARD=seeed2micvoicec,DEV=0 -r 22050 -c 1 -f S16_LE -t raw"
       - "--wake-uri"
       - "tcp://127.0.0.1:10400"
       - "--wake-word-name"
       - "hey_jarvis"
+      - "--event-uri"
+      - "tcp://127.0.0.1:10500"
     depends_on:
+      - ledcontrol
       - openwakeword
+  
+  # Control 2mic_hat led
+  ledcontrol:
+    container_name: ledcontrol
+    image: "ghcr.io/florian-asche/pi-voice-assistant:nightly"
+    restart: unless-stopped
+    network_mode: "host"
+    entrypoint: /app/script/run_2mic
+    devices:
+      - /dev/gpiomem:/dev/gpiomem
+      - /dev/spidev0.0:/dev/spidev0.0
+      - /dev/spidev0.1:/dev/spidev0.1
+    #group_add:
+    #  - audio
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    command:
+      - "--debug"
+      - "--uri"
+      - "tcp://0.0.0.0:10500"
 
   # Wake word detection
   openwakeword:

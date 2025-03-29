@@ -1,6 +1,4 @@
 """Voice satellite using the Wyoming protocol."""
-
-import importlib.metadata
 from pathlib import Path
 
 from .satellite import (
@@ -19,7 +17,7 @@ from .settings import (
 )
 
 _DIR = Path(__file__).parent
-__version__ = importlib.metadata.version("wyoming-satellite")
+__version__ = (_DIR / "VERSION").read_text(encoding="utf-8").strip()
 
 __all__ = [
     "__version__",
