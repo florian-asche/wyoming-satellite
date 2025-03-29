@@ -33,12 +33,6 @@ RUN ./script/setup --noisegain
 RUN ./script/setup --respeaker
 #RUN .venv/bin/pip3 install 'pixel-ring'
 
-# Create and switch to non-root user
-RUN useradd -m -s /bin/bash -u 1000 wyoming && \
-    usermod -a -G audio wyoming && \
-    chown -R wyoming:wyoming /app
-USER wyoming
-
 # Set ports for voice and led
 EXPOSE 10700 10500
 
