@@ -33,6 +33,10 @@ RUN ./script/setup --noisegain
 RUN ./script/setup --respeaker
 #RUN .venv/bin/pip3 install 'pixel-ring'
 
+# !!!!
+# Bugfix workaround onnxruntime
+RUN source .venv/bin/activate && pip uninstall -y onnxruntime && pip install onnxruntime==1.20.1
+
 # Set ports for voice and led
 EXPOSE 10700 10500
 
