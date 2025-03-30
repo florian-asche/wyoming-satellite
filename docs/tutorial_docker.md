@@ -22,6 +22,8 @@ Check out [PiCompose](https://github.com/florian-asche/PiCompose)
 
 You just have to copy the docker-compose from here. More information in the PiCompose project.
 
+After the first boot the board will automatically reboot one more time. Then you can copy your compose files if you already havent. Then you need to reboot the board one more time in order to activate the 2MicHat drivers if you use that hardware.
+
 #### Option 2: Manual Installation
 Or you can install the Docker setup yourself by following the steps below:
 
