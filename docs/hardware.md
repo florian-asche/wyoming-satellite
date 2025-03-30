@@ -3,13 +3,13 @@
 ## Base
 
 [Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/)
-[SD-Card](...)
+[SD-Card](https://www.amazon.de/Samsung-microSD-Karte-SD-Adapter-Speicherkarte-MB-ME128SA/dp/B0CVBBPZ28/ref=sr_1_11?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=26Z2MAN8CG7C1&dib=eyJ2IjoiMSJ9._Kk8qR1UI_lIYFfD5SyvkcPoueNxeFLjWe8aplAqFBUWwbYxPYLuvsLca4U8eeA_-FT2_ImPU3V1lz-gF2zfW1y0NhTUe8nh2iMQBGAO9vnQXcFnzvdcPbGfBqVlNoUi6BlVh2u4n1X0KlTeju_8fCrZ1HCZc46M0OPpgj8b3w6yIsUwsOhlXQveEBW4q2fAEoSuu50MGNYSioj7cXFTedcZZcRvnI8RHgIwREpyRJI.QRdNNpvyMdRUfGgGu_jaElBaN5qNGkBHicDPTEPapAk&dib_tag=se&keywords=samsung%2Bsd%2Bcard%2B16gb&qid=1743299132&sprefix=samsung%2Bsd%2Bcard%2B16gb%2Caps%2C92&sr=8-11&th=1)
 
 ## Speaker
 
 [Speaker](https://www.laskakit.cz/2-reproduktory-bose-10w-4-40mm--klon/)
 [Passiv Radiator](https://www.laskakit.cz/bose-pasivni-membrana-pro-soundlink-mini--klon/)
-[Cable for Speaker](...)
+[Cable for Speaker](https://de.aliexpress.com/item/1005005491577017.html?spm=a2g0o.order_list.order_list_main.364.4dac5c5fKkDzIc&gatewayAdapt=glo2deu)
 
 ## Mic Array
 
