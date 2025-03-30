@@ -19,6 +19,10 @@ This repository also provides a Docker image for [Wyoming Satellite](https://git
 
 ## Usage
 
+## Hardware
+
+See [hardware.md](docs/hardware.md)
+
 ### Use Docker
 
 See [tutorial_docker.md](docs/tutorial_docker.md)
