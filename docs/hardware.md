@@ -16,10 +16,17 @@
 
 ### ReSpeaker Lite
 
-USB 2-Mic Array with Onboard AI Audio Processing Algorithms, 
+USB 2-Mic Array with Onboard AI Audio Processing Algorithms,
 compatible with Seeed Studio XIAO ESP32S3 (Sense), Raspberry Pi, Adafruit QT Py
 
-Info: In order to use this board with the Raspberry Pi Zero 2W you need to flash the usb-firmware. More information in the official Seeedstudio Wiki.
+**Warning:**
+
+The board is currently not functioning reliably. When using voice input, the board stops working after 7 or 8 uses of the voice function.
+Open issue: https://github.com/respeaker/ReSpeaker_Lite/issues/8
+
+**Info:**
+
+In order to use this board with the Raspberry Pi Zero 2W you need to flash the usb-firmware. More information in the official Seeedstudio Wiki.
 
 - [ReSpeaker Lite](https://www.seeedstudio.com/ReSpeaker-Lite-p-5928.html?srsltid=AfmBOopODKrejEe7WIXSLV5fjLuhhK8PO-AXG3WnDI1N1pwBu-PTWQHf)
 - [Cable](https://de.aliexpress.com/item/1005004792246478.html?spm=a2g0o.order_list.order_list_main.5.4dac5c5fKkDzIc&gatewayAdapt=glo2deu)
@@ -41,4 +48,3 @@ Other helpfull links:
 
 - [Wiki](...)
 - [Firmware]()
-
