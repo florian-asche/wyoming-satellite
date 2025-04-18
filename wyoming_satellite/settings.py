@@ -95,7 +95,7 @@ class SndSettings(ServiceSettings):
     samples_per_chunk: int = 1024
     """Samples to write at a time to snd command"""
 
-    disconnect_after_stop: bool = False
+    disconnect_after_stop: bool = True
     """True if snd service should be disconnected after AudioStop."""
 
     @property
