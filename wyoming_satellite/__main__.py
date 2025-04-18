@@ -245,6 +245,10 @@ async def main() -> None:
         help="Command to run when a timer finishes",
     )
 
+    parser.add_argument(
+        "--disable-disconnect-after-stop", action="store_true", help="Disable disconnect the output after audio output"
+    )
+
     # Sounds
     parser.add_argument(
         "--awake-wav", help="WAV file to play when wake word is detected"
@@ -322,9 +326,13 @@ async def main() -> None:
         _LOGGER.fatal("%s does not exist", args.awake_wav)
         sys.exit(1)
 
-    if args.done_wav and (not Path(args.done_wav).is_file()):
-        _LOGGER.fatal("%s does not exist", args.done_wav)
+    if args.awake_wav and (not Path(args.awake_wav).is_file()):
+        _LOGGER.fatal("%s does not exist", args.awake_wav)
         sys.exit(1)
+
+    if args.disable_disconnect_after_stop:
+        _LOGGER.info("%s audio output is connected permanently", args.disable_disconnect_after_stop)
+        disconnect_after_stop: bool = False
 
     if args.timer_finished_wav and (not Path(args.timer_finished_wav).is_file()):
         _LOGGER.fatal("%s does not exist", args.timer_finished_wav)
