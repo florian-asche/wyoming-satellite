@@ -19,19 +19,21 @@ This repository also provides a Docker image for [Wyoming Satellite](https://git
 
 ## Usage
 
-## Hardware
+### Hardware
 
-See [hardware.md](docs/hardware.md)
+You can use for example the Raspberry Pi Zero 2W with the Respeaker Lite or the Respeaker 2Mic_Hat.
 
-### Use Docker
+For more specific information about what hardware, you can look here: [piCompose: hardware.md](https://github.com/florian-asche/PiCompose/docs/hardware.md)
+
+### Software
+
+#### Use a prebuild Raspberry Pi Image with Docker:
 
 See [tutorial_docker.md](docs/tutorial_docker.md)
 
-### Use installer on selfinstalled hardware
+#### Use installer on selfinstalled hardware (old method):
 
 See [tutorial_installer.md](docs/tutorial_installer.md) and [tutorial_2mic.md](docs/tutorial_2mic.md)
-
-## Helpful information
 
 Video tutorials:
 
@@ -47,7 +49,3 @@ The Docker images are built using GitHub Actions, which provides:
 - Automated builds for different architectures
 - Artifact attestation for build provenance verification
 - Regular updates and maintenance
-
-## Documentation
-
-For detailed documentation and examples, please visit the [docs](docs/) directory in this repository.

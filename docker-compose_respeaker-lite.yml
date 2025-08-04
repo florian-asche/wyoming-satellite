@@ -1,7 +1,4 @@
 ---
-networks:
-  default:                # default network for this project
-
 
 services:
   satellite:
@@ -24,10 +21,12 @@ services:
       - /etc/timezone:/etc/timezone:ro
       # 1000 is my user id from the local user i used on my ubuntu desktop or pi-compose image
       - /run/user/1000/pipewire-0:/run/pipewire-0
+      - /run/user/1000/pipewire-0-manager:/run/pipewire-0-manager
+      - /etc/alsa/conf.d/99-virtual-default.conf:/etc/alsa/conf.d/99-virtual-default.conf:ro
     command:
       - "--debug"
       - "--name"
-      - "satellite-newboard"
+      - "<place_example_satellite_name_here>"
       - "--vad"
       #- "--vad-buffer-seconds"
       #- "4"
@@ -53,6 +52,9 @@ services:
       - "tcp://127.0.0.1:10400"
       - "--wake-word-name"
       - "hey_jarvis"
+        #- "--disable-disconnect-after-stop"
+      - "--snd-volume-multiplier"
+      - "0.3"
     depends_on:
       - openwakeword
 
@@ -67,8 +69,6 @@ services:
       - wakeword_custom:/custom
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    environment:
-      - TZ=Europe/Berlin
     command: "--preload-model 'hey_jarvis' --custom-model-dir /custom --threshold 0.3 --trigger-level 1"
 
 
