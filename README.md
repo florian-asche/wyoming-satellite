@@ -23,7 +23,7 @@ This repository also provides a Docker image for [Wyoming Satellite](https://git
 
 You can use for example the Raspberry Pi Zero 2W with the Respeaker Lite or the Respeaker 2Mic_Hat.
 
-For more specific information about what hardware, you can look here: [piCompose: hardware.md](https://github.com/florian-asche/PiCompose/docs/hardware.md)
+For more specific information about what hardware, you can look here: [piCompose: hardware.md](https://github.com/florian-asche/PiCompose/blob/main/docs/hardware.md)
 
 ### Software
 

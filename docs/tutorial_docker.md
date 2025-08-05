@@ -14,7 +14,7 @@ For Raspberry Pi users: Check out [PiCompose](https://github.com/florian-asche/P
 
 - `latest`: Latest stable release
 - `nightly`: Builds from the main branch (may be unstable)
-- Version-specific tags (e.g., `1.5.0`): Stable releases???????
+- Version-specific tags (e.g., `1.5.0`)
 
 ## Parameter Overview
 
